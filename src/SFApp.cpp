@@ -52,37 +52,46 @@ for(int c=0; c < number_of_coins; c++){
 
  auto skull = make_shared<SFAsset>(SFASSET_SKULL);
  auto skull2 = make_shared<SFAsset>(SFASSET_SKULL);
+ auto skull3 = make_shared<SFAsset>(SFASSET_SKULL);
+ auto skull4 = make_shared<SFAsset>(SFASSET_SKULL);
 
- auto pos = Point2(40.0f,190.0f);
- auto pos2 = Point2(40.0f,330.0f);
+ auto pos = Point2(20.0f,190.0f);
+ auto pos2 = Point2(70.0f,320.0f);
+ auto pos3 = Point2(340.0f,240.0f);
+ auto pos4 = Point2(340.0f,380.0f);
+
 
  skull->SetPosition(pos);
  skull2->SetPosition(pos2);
+ skull3->SetPosition(pos3);
+ skull4->SetPosition(pos4);
 
  skulls.push_back(skull);
  skulls.push_back(skull2);
+ skulls.push_back(skull3);
+ skulls.push_back(skull4);
 
  auto key = make_shared<SFAsset>(SFASSET_KEY);
  auto key2 = make_shared<SFAsset>(SFASSET_KEY);
- auto pos3 = Point2(surface->w/2, 190.0f);
- auto pos4 = Point2(surface->w/2, 350.0f);
- key->SetPosition(pos3);
- key2->SetPosition(pos4);
+ auto pos5 = Point2(surface->w/2, 190.0f);
+ auto pos6 = Point2(surface->w/2, 350.0f);
+ key->SetPosition(pos5);
+ key2->SetPosition(pos6);
  keys.push_back(key);
  keys.push_back(key2);
 
  auto door = make_shared<SFAsset>(SFASSET_DOOR);
  auto door2 = make_shared<SFAsset>(SFASSET_DOOR);
- auto pos5 = Point2(15.0f, 291.0f);
- auto pos6 = Point2(625.0f, 422.5f);
- door->SetPosition(pos5);
- door2->SetPosition(pos6);
+ auto pos7 = Point2(15.0f, 291.0f);
+ auto pos8 = Point2(625.0f, 422.5f);
+ door->SetPosition(pos7);
+ door2->SetPosition(pos8);
  doors.push_back(door);
  doors.push_back(door2);
 
  auto end = make_shared<SFAsset>(SFASSET_END);
- auto pos7 = Point2(40.0f,surface->h);
- end->SetPosition(pos7);
+ auto pos9 = Point2(40.0f,surface->h);
+ end->SetPosition(pos9);
  ends.push_back(end);
 }
 
@@ -148,7 +157,8 @@ void SFApp::OnUpdateWorld() {
   }
 
   for (auto s: skulls) {
-
+    if(player->CollidesWith(s))
+      is_running = false;
   }
 
   for(auto k: keys){
